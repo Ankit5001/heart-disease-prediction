@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction Result</h1>
+        <div class="result">
+            <h2>Prediction: 
+                {% if prediction == 1 %}
+                <span class="high-risk">High Risk of Heart Disease</span>
+                {% else %}
+                <span class="low-risk">Low Risk of Heart Disease</span>
+                {% endif %}
+            </h2>
+            <p>Confidence: {{ probability }}%</p>
+        </div>
+        <div class="features">
+            <h3>Input Features:</h3>
+            <ul>
+                {% for key, value in features.items() %}
+                <li><strong>{{ key }}:</strong> {{ value }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a href="{{ url_for('home') }}" class="button">Make Another Prediction</a>
+    </div>
+</body>
+</html>
